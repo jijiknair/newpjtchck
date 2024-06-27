@@ -8,10 +8,10 @@ def load_data(file_path):
     return df
 
 def main():
-    st.title('Email Lookup Dashboard')
+    st.title('Email Lookup Dashboard(منصة لإيجاد بريدك الالكتروني)')
 
     # Sidebar for user input (id number)
-    st.sidebar.title('Input ID Number')
+    st.sidebar.title('Input ID Number(رقم البطاقة الشخصية  (الرقم المدني))')
     id_number = st.sidebar.number_input('Enter ID Number', min_value=1, step=1)
 
     # Load data
