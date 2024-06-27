@@ -1,34 +1,38 @@
 import streamlit as st
 import pandas as pd
 
-@st.cache_data
-def load_data(file_path, encoding='utf-8'):
-    return pd.read_csv(file_path, encoding=encoding)
+# Function to load data
+@st.cache_data  # This will cache the data so it's not loaded every time the script runs
+def load_data(file_path):
+    return pd.read_csv(file_path, encoding='ISO-8859-1')
 
-def get_email_by_id(df, user_id):
-    result = df[df['IDNUMBER'] == user_id]
-    if not result.empty:
-        return result.iloc[0]['Email']
-    else:
-        return None
+# Main function to run the app
+def main():
+    st.title('Email Lookup Dashboard')
 
-# Load data
-file_path = r'https://github.com/jijiknair/newpjtchck/blob/master/TOTALfile.csv'  # Use raw string literal here
-encoding = 'ISO-8859-1'  # or 'utf-16' or any other appropriate encoding
-df = load_data(file_path, encoding)
+    # File path to your CSV file
+    file_path = 'total_file.csv'
 
-# Streamlit app
-st.title('Email Lookup Dashboard')
+    # Load data
+    df = load_data(file_path)
+
+    # Sidebar for user input
+    st.sidebar.title('Enter ID Number')
+    id_number = st.sidebar.text_input('Enter ID Number')
+
+    # Display email if ID number is found
+    if id_number:
+        try:
+            id_number = int(id_number)  # Convert input to integer if possible
+            filtered_data = df[df['IDNUMBER'] == id_number]
+            if not filtered_data.empty:
+                email = filtered_data.iloc[0]['Email']
+                st.write(f"Email address for ID {id_number}: {email}")
+            else:
+                st.warning(f"No email found for ID {id_number}")
+        except ValueError:
+            st.warning("Please enter a valid ID number")
+
 if __name__ == '__main__':
     main()
 
-# Input field for user ID
-user_id = st.number_input('Enter User ID', min_value=1, step=1)
-
-# Button to fetch email
-if st.button('Get Email'):
-    email = get_email_by_id(df, user_id)
-    if email:
-        st.success(f'The email address for user ID {user_id} is {email}.')
-    else:
-        st.error(f'No email address found for user ID {user_id}.')
