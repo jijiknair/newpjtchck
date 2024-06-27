@@ -4,10 +4,10 @@ import pandas as pd
 @st.cache
 def load_data(file_path):
     try:
-        df = pd.read_csv(file_path, encoding='utf-8')
+        df = pd.read_csv(file_path, error_bad_lines=False)
         return df
     except Exception as e:
-        st.error(f"Error: {e}")
+        st.error(f"Error loading CSV file: {str(e)}")
         return None
 
 def main():
