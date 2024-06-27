@@ -5,18 +5,15 @@ import streamlit as st
 @st.cache
 def load_data(file_path):
     try:
-        df = pd.read_csv(file_path)
+        df = pd.read_csv(file_path, sep=',', error_bad_lines=False, warn_bad_lines=True)
         return df
-    except pd.errors.ParserError as e:
-        st.error(f"Error parsing CSV file: {str(e)}")
-        return None
     except Exception as e:
         st.error(f"Error loading CSV file: {str(e)}")
         return None
 
 # Function to display email lookup dashboard
 def main():
-    file_path = 'https://github.com/jijiknair/newpjtchck/blob/master/TOTALfile.csv'
+    file_path = 'https://raw.githubusercontent.com/jijiknair/newpjtchck/main/TOTALfile.csv'
     df = load_data(file_path)
 
     if df is not None:
