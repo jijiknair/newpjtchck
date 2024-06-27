@@ -1,11 +1,14 @@
 import streamlit as st
 import pandas as pd
 
-# Load data (assuming you have a CSV with 'id' and 'email' columns)
-@st.cache  # Cache the data to speed up app performance
+@st.cache
 def load_data(file_path):
-    df = pd.read_csv(file_path)
-    return df
+    try:
+        df = pd.read_csv(file_path, encoding='utf-8')
+        return df
+    except Exception as e:
+        st.error(f"Error: {e}")
+        return None
 
 def main():
     st.title('Email Lookup Dashboard(منصة لإيجاد بريدك الالكتروني)')
