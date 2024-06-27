@@ -1,6 +1,9 @@
 import streamlit as st
 import pandas as pd
 
+
+
+def main():
 # Load the CSV file into a DataFrame with specified encoding
 @st.cache_data
 def load_data(file_path, encoding='utf-8'):
@@ -20,6 +23,8 @@ df = load_data(file_path, encoding)
 
 # Streamlit app
 st.title('Email Lookup Dashboard')
+if __name__ == '__main__':
+    main()
 
 # Input field for user ID
 user_id = st.number_input('Enter User ID', min_value=1, step=1)
