@@ -1,8 +1,6 @@
 import streamlit as st
 import pandas as pd
 
-
-
 @st.cache_data
 def load_data(file_path, encoding='utf-8'):
     return pd.read_csv(file_path, encoding=encoding)
@@ -15,7 +13,7 @@ def get_email_by_id(df, user_id):
         return None
 
 # Load data
-file_path = r'C:\Users\DELL\OneDrive\Desktop\pjt\TOTALfile.csv'  # Use raw string literal here
+file_path = r'https://github.com/jijiknair/newpjtchck/blob/master/TOTALfile.csv'  # Use raw string literal here
 encoding = 'ISO-8859-1'  # or 'utf-16' or any other appropriate encoding
 df = load_data(file_path, encoding)
 
