@@ -8,7 +8,7 @@ def load_data(file_path):
 
 # Main function to run the app
 def main():
-    st.title('Email Lookup Dashboard')
+    st.title('Email Lookup Dashboard(منصة لإيجاد بريدك الالكتروني)')
 
     # File path to your CSV file
     file_path = 'total_file.csv'
@@ -18,7 +18,7 @@ def main():
 
     # Sidebar for user input
     st.sidebar.title('Enter ID Number')
-    id_number = st.sidebar.text_input('Enter ID Number')
+    id_number = st.sidebar.text_input('Enter ID Number(رقم البطاقة الشخصية  (الرقم المدني))')
 
     # Display email if ID number is found
     if id_number:
