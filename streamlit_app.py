@@ -15,7 +15,7 @@ def main():
     id_number = st.sidebar.number_input('Enter ID Number', min_value=1, step=1)
 
     # Load data
-    file_path = 'https://raw.githubusercontent.com/jijiknair/newpjtchck/main/TOTALfile.csv'
+    file_path = 'https://github.com/jijiknair/newpjtchck/blob/master/TOTALfile.csv'
     df = load_data(file_path)
 
     # Lookup email based on id number
